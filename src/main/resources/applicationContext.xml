@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context
+              http://www.springframework.org/schema/context/spring-context.xsd
+              http://www.springframework.org/schema/aop
+              http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理 -->
+    <context:component-scan base-package="com.cn.sys.*.service.*.impl" />
+    <context:component-scan base-package="com.cn.sys.*.component.*" />
+
+    <!--
+    <context:component-scan base-package="com.emall.timer" />
+    -->
+    <!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理 -->
+    <context:annotation-config />
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:*.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- masterdataSource 配置 -->
+    <bean id="masterdataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 基本属性driverClass、jdbcUrl、user、password -->
+        <property name="driverClass" value="${jpa.jdbc.mysql.driver}" />
+        <property name="jdbcUrl" value="${jpa.jdbc.mysql.url}" />
+        <property name="user" value="${jpa.jdbc.mysql.username}" />
+        <property name="password" value="${jpa.jdbc.mysql.password}" />
+        <!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
+        <property name="autoCommitOnClose" value="true"/>
+        <!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，
+                                   超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 0 -->
+        <property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>
+        <!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3--> 
+        <property name="initialPoolSize" value="${cpool.minPoolSize}"/>
+        <!-- 连接池中保留的最小连接数，默认为：3-->
+        <property name="minPoolSize" value="${cpool.minPoolSize}"/>
+        <!--连接池中保留的最大连接数。默认值: 15 -->
+        <property name="maxPoolSize" value="${cpool.maxPoolSize}"/>
+        <!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+        <property name="maxIdleTime" value="${cpool.maxIdleTime}"/>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+        <property name="acquireIncrement" value="${cpool.acquireIncrement}"/>
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次-->
+        <property name="acquireRetryAttempts" value="${cpool.acquireRetryAttempts}"/>
+        <!--重新尝试的时间间隔，默认为：1000毫秒-->
+        <property name="acquireRetryDelay" value="${cpool.acquireRetryDelay}" />
+        <!--每60秒检查所有连接池中的空闲连接。默认值: 0，不检查 -->
+        <property name="idleConnectionTestPeriod" value="${cpool.idleConnectionTestPeriod}"/>
+        <!--c3p0全局的PreparedStatements缓存的大小。如果maxStatements与maxStatementsPerConnection均为0，
+                                 则缓存不生效，只要有一个不为0，则语句的缓存就能生效。如果默认值: 0-->
+        <property name="maxStatements" value="${cpool.maxStatements}"/>
+        <property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections}"/>
+    </bean>
+
+
+    <!-- 启动对@AspectJ（面向切面）注解的支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <!-- 其他资源引用 -->
+    <import resource="applicationContext_JPA.xml" />
+</beans>

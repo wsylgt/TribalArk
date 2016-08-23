@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="Kris">
+    <!-- 国产浏览器 高速模式（即 webkit 内核）-->
+    <meta name="renderer" content="webkit">
+
+    <link rel="shortcut icon" href="resource/images/icon/favicon.ico">
+
+    <title>部落方舟</title>
+
+    <!-- style -->
+    <link href="resource/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="resource/plugin/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="resource/plugin/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="sticky-header">
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="resource/plugin/jquery/1.12.3/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="resource/plugin/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- 用于检测用户浏览器的 HTML5 与 CSS3 特性 -->
+<script src="resource/plugin/modernizr/2.8.3/modernizr.custom.min.js"></script>
+
+<script src="resource/js/global.js"></script>
+<script>
+    $(document).ready(function() {
+        var url = "api/usermanage/usercreate";
+        var data;
+        callback = function (data) {
+            alert(data);
+        }
+        fnAjax(url, data, callback);
+    });
+</script>
+</body>
+</html>

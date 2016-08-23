@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+  <!-- 默认扫描Controller的包路径 -->
+  <context:component-scan base-package="com.cn.api.*.controller"/>
+  <!-- 添加注解驱动 -->
+  <mvc:annotation-driven/>
+  <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
+  <mvc:default-servlet-handler/>
+
+  <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/views/"/>
+    <property name="suffix" value=".jsp"/>
+    <property name="contentType" value="text/html;charset=UTF-8"/>
+    <property name="order" value="2"/>
+  </bean>
+  <!-- 利用Spring 组件 CommonsMultipartResolver控制上传文件大小  -->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="defaultEncoding" value="utf-8"/>
+    <property name="maxUploadSize" value="10485760000"/>
+    <property name="maxInMemorySize" value="40960"/>
+  </bean>
+  <!-- 国际化配置 -->
+  <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <property name="cookieMaxAge" value="604800"/>
+    <property name="defaultLocale" value="zh_CN"/>
+    <property name="cookieName" value="language"></property>
+  </bean>
+
+  <!-- 注册验证器 -->
+  <mvc:annotation-driven validator="validator"/>
+  <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
+  <!-- <mvc:default-servlet-handler/> -->
+  <!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    <!-- 如果不加默认到 使用classpath下的 ValidationMessages_zh_CN.properties -->
+    <property name="validationMessageSource" ref="messageSource"/>
+  </bean>
+
+  <!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename">
+      <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
+      <value>classpath:org/hibernate/validator/ValidationMessages_zh_CN</value>
+    </property>
+    <property name="useCodeAsDefaultMessage" value="false"/>
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="cacheSeconds" value="60"/>
+  </bean>
+
+  <!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
+  <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <ref bean="mappingJackson2HttpMessageConverter"/>
+      </list>
+    </property>
+  </bean>
+  <bean id="mappingJackson2HttpMessageConverter"
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <property name="supportedMediaTypes">
+      <list>
+        <value>text/json;charset=UTF-8</value>
+        <value>application/json;charset=UTF-8</value>
+      </list>
+    </property>
+  </bean>
+</beans>
