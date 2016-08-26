@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Default Main Template -->
+    <definition name="base.template" template="/WEB-INF/views/templates/base_layout.jsp">
+        <put-attribute name="metas" value="/WEB-INF/views/templates/base/metas.jsp"/>
+        <put-attribute name="styles" value="/WEB-INF/views/templates/base/styles.jsp"/>
+        <put-attribute name="scripts" value="/WEB-INF/views/templates/base/scripts.jsp"/>
+        <put-attribute name="title" value="北大荒厨房" type="string" />
+        <put-attribute name="navbar-header" value="/WEB-INF/views/templates/base/navbar-header.jsp" />
+        <put-attribute name="navbar-menu" value="/WEB-INF/views/templates/base/navbar-menu.jsp" />
+        <put-attribute name="container" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/base/footer.jsp"/>
+    </definition>
+
+    <definition name="index" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/index.jsp" />
+    </definition>
+
+    <definition name="*.base" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/{1}.jsp" />
+    </definition>
+    <definition name="*/*.base" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}.jsp" />
+    </definition>
+    <definition name="*/*/*.base" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+    </definition>
+    <definition name="*/*/*/*.base" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp" />
+    </definition>
+
+    <!-- Default Main Template -->
+    <definition name="login.template" template="/WEB-INF/views/templates/login_layout.jsp">
+        <put-attribute name="metas" value="/WEB-INF/views/templates/base/metas.jsp"/>
+        <put-attribute name="styles" value="/WEB-INF/views/templates/base/styles.jsp"/>
+        <put-attribute name="scripts" value="/WEB-INF/views/templates/base/scripts.jsp"/>
+        <put-attribute name="title" value="北大荒厨房" type="string" />
+        <put-attribute name="container" value=""/>
+    </definition>
+    <definition name="login" extends="login.template">
+        <put-attribute name="container" value="/WEB-INF/views/login.jsp" />
+    </definition>
+    <definition name="*.demo" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/demo/{1}.jsp" />
+    </definition>
+    <definition name="demo/*.demo" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/demo/demo/{1}.jsp" />
+    </definition>
+    <definition name="*/*/*.demo" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/demo/{1}/{2}/{3}.jsp" />
+    </definition>
+    <definition name="*/*/*/*.demo" extends="base.template">
+        <put-attribute name="container" value="/WEB-INF/views/demo/{1}/{2}/{3}/{4}.jsp" />
+    </definition>
+</tiles-definitions>
