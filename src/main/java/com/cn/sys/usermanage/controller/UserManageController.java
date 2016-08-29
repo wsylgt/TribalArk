@@ -4,10 +4,7 @@ package com.cn.sys.usermanage.controller;
 import com.cn.component.SystemLog;
 import com.cn.content.Constant;
 import com.cn.model.JsonModel;
-import com.cn.sys.usermanage.model.ResetPasswordModel;
-import com.cn.sys.usermanage.model.RoleModel;
-import com.cn.sys.usermanage.model.UserEditModel;
-import com.cn.sys.usermanage.model.UserModel;
+import com.cn.sys.usermanage.model.*;
 import com.cn.sys.usermanage.service.IUserManageService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -47,10 +44,15 @@ public class UserManageController {
      */
     @RequestMapping(value = "/create")
     public ModelAndView create() {
+
         logger.info("create: 添加用户界面");
 
         ModelAndView model = new ModelAndView();
 
+        ViewModel view = userManageService.getViewInfo();
+
+        model.addObject("view", view);
+        model.addObject("user", new UserModel());
         model.setViewName("/sys/usermanage/create.base");
         return model;
     }
@@ -123,7 +125,7 @@ public class UserManageController {
 
         // 获取用户列表信息
         Page<UserModel> pageModel = userManageService.allUser(pageNumber, pageSize, employeeNo, userName, roleId, isDelete);
-        userModel.setPage(pageModel);
+
         // 获取用户角色列表信息
         List<RoleModel> roleModelList = userManageService.allRole();
 

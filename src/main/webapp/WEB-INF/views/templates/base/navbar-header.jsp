@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%-- 常量引用 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <jsp:include page="constant.jsp" /> --%>
@@ -214,10 +215,10 @@
   <!-- /.dropdown -->
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+      <i class="fa fa-user fa-fw"></i><sec:authentication property="principal.username"/> <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
-      <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+      <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
       </li>
       <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
       </li>

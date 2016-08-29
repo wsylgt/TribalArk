@@ -45,7 +45,7 @@
                 <b>${status}</b>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">用户名</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" value="${user.userName}">
                     <small class="help-block validate-error-span userName-ErrMsg"><form:errors path="userName"/></small>
                     <small class="help-block validate-error-span userName-ErrMsg" id="userName-ErrMsg"></small>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">登录密码</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="password" class="form-control" name="password" placeholder="以字母开头，长度在8~20之间，只能包含字母、数字和下划线"
                            value="${user.password}">
                     <small class="help-block validate-error-span password-ErrMsg"><form:errors path="password"/></small>
@@ -61,22 +61,22 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">确认密码</label>
-                  <div class="col-lg-10">
-                    <input type="password" class="form-control" name="confirm_password" placeholder="以字母开头，长度在8~20之间，只能包含字母、数字和下划线"
-                           value="${user.password}">
-                    <small class="help-block validate-error-span confirm_password-ErrMsg"><form:errors path="confirm_password"/></small>
+                  <div class="col-lg-8">
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="以字母开头，长度在8~20之间，只能包含字母、数字和下划线"
+                           value="${user.confirmPassword}">
+                    <small class="help-block validate-error-span confirmPassword-ErrMsg"><form:errors path="confirmPassword"/></small>
                   </div>
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">Email地址</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="email" class="form-control" name="email" placeholder="Email地址" value="${user.email}">
                     <small class="help-block validate-error-span email-ErrMsg"><form:errors path="email"/></small>
                   </div>
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">联系电话</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="cellphoneNo" name="cellphoneNo" placeholder="联系电话" value="${user.cellphoneNo}">
                     <small class="help-block validate-error-span cellphoneNo-ErrMsg"><form:errors path="cellphoneNo"/></small>
                     <small class="help-block validate-error-span cellphoneNo-ErrMsg" id="cellphoneNo-ErrMsg"></small>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">QQ</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="qq" name="qq" placeholder="QQ号" value="${user.qq}">
                     <qq class="help-block validate-error-span qq-ErrMsg"><form:errors path="cellphoneNo"/></qq>
                     <small class="help-block validate-error-span qq-ErrMsg" id="qq-ErrMsg"></small>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">微信</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="wechat" name="wechat" placeholder="微信" value="${user.wechat}">
                     <small class="help-block validate-error-span wechat-ErrMsg"><form:errors path="wechat"/></small>
                     <small class="help-block validate-error-span wechat-ErrMsg" id="wechat-ErrMsg"></small>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">工号</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="employeeNo" name="employeeNo" placeholder="工号" value="${user.employeeNo}">
                     <small class="help-block validate-error-span employeeNo-ErrMsg"><form:errors path="wechat"/></small>
                     <small class="help-block validate-error-span employeeNo-ErrMsg" id="employeeNo-ErrMsg"></small>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">所在部门</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" id="department" name="department" placeholder="所在部门" value="${user.department}">
                     <small class="help-block validate-error-span department-ErrMsg"><form:errors path="department"/></small>
                     <small class="help-block validate-error-span department-ErrMsg" id="department-ErrMsg"></small>
@@ -116,18 +116,20 @@
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">性别</label>
-                  <div class="col-lg-10">
-                    <small class="help-block validate-error-span password-ErrMsg"><form:errors path="password"/></small>
+                  <div class="col-lg-8">
+                    <form:select path="sexCodeId" items="${view.sexMap}" id="sexCodeId" name="sexCodeId" cssClass="form-control"/>
+                    <small class="help-block validate-error-span sexCodeId-ErrMsg"><form:errors path="sexCodeId"/></small>
                   </div>
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">所属角色</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
+                    <form:select path="" items="${view.roleMap}" cssClass="form-control"/>
                   </div>
                 </div>
                 <div class="form-group form-group-sm">
                   <label class="col-lg-2 control-label">用户描述</label>
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                     <textarea class="form-control" rows="3" style="resize:none;" name="userDescription"></textarea>
                     <small class="help-block validate-error-span userDescription-ErrMsg"><form:errors path="userDescription"/></small>
                   </div>

@@ -1,9 +1,6 @@
 package com.cn.sys.usermanage.service;
 
-import com.cn.sys.usermanage.model.ResetPasswordModel;
-import com.cn.sys.usermanage.model.RoleModel;
-import com.cn.sys.usermanage.model.UserEditModel;
-import com.cn.sys.usermanage.model.UserModel;
+import com.cn.sys.usermanage.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +31,12 @@ public interface IUserManageService {
      * @return List
      */
     public List<RoleModel> allRole();
+
+    /**
+     * 添加用户显示的数据取得
+     * @return
+     */
+    public ViewModel getViewInfo();
 
     /**
      * 添加一个用户

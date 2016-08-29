@@ -8,10 +8,7 @@ import com.cn.dao.entity.UmRoleEntity;
 import com.cn.dao.entity.UmUserRoleEntity;
 import com.cn.dao.repositorys.UmRoleRepository;
 import com.cn.dao.repositorys.UmUserRoleRepository;
-import com.cn.sys.usermanage.model.ResetPasswordModel;
-import com.cn.sys.usermanage.model.RoleModel;
-import com.cn.sys.usermanage.model.UserEditModel;
-import com.cn.sys.usermanage.model.UserModel;
+import com.cn.sys.usermanage.model.*;
 import com.cn.dao.entity.UmUserEntity;
 import com.cn.dao.repositorys.UmUserRepository;
 import com.cn.sys.usermanage.service.IUserManageService;
@@ -131,7 +128,6 @@ public class UserManageServiceImpl implements IUserManageService {
                     roleIdSet.add(umUserRoleEntity.getRoleId());
                 }
             }
-            userModel.setRoleIdSet(roleIdSet);
 
             userModelList.add(userModel);
         }
@@ -159,6 +155,35 @@ public class UserManageServiceImpl implements IUserManageService {
             roleModelList.add(roleModel);
         }
         return roleModelList;
+    }
+
+
+    /**
+     * 添加用户显示的数据取得
+     * @return
+     */
+    public ViewModel getViewInfo() {
+        ViewModel view = new ViewModel();
+
+        // 获取所有角色信息
+        List<UmRoleEntity> umRoleEntityList = umRoleRepository.findAll();
+
+        LinkedHashMap<String, String> roleMap = new LinkedHashMap<>();
+        // 遍历umRoleEntityList, 将Entity添加到Model中
+        for (UmRoleEntity umRoleEntity : umRoleEntityList) {
+            roleMap.put(String.valueOf(umRoleEntity.getRoleId()), umRoleEntity.getRoleName());
+        }
+        view.setRoleMap(roleMap);
+
+        // 性别
+        LinkedHashMap<String, String> sexMap = codeMasterManage.getInfoForDropDown(Constant.CODE_GROUP_ID_SEX, null);
+        view.setSexMap(sexMap);
+
+        // 用户状态
+        LinkedHashMap<String, String> userStatusMap = codeMasterManage.getInfoForDropDown(Constant.USER_STATUS_GROUP_ID, null);
+        view.setSexMap(sexMap);
+
+        return view;
     }
 
     /**
@@ -196,7 +221,6 @@ public class UserManageServiceImpl implements IUserManageService {
 
             // 设定用户角色
             UmUserRoleEntity umUserRoleEntity = new UmUserRoleEntity();
-            umUserRoleEntity.setRoleId(userModel.getRoleId());
             // 设定操作人, 操作时间等
             umUserRoleEntity.setCreateUser(contextManage.getUser().getUsername());
             umUserRoleEntity.setCreateTime(systeDate);
@@ -318,7 +342,6 @@ public class UserManageServiceImpl implements IUserManageService {
                         roleIdSet.add(umUserRoleEntity.getRoleId());
                     }
                 }
-                userModel.setRoleIdSet(roleIdSet);
             }
         }
         return userModel;

@@ -817,19 +817,9 @@ public interface Constant {
     /** 编码ID(00001：供应商类型的003：实物+虚拟)*/
     public static final String CODE_ID_SUPPLIER_ENTITY_VIRTUAL_TYPE = "003";
 
-    /** 编码组ID(00002：供应商结算类型)*/
-    public static final String CODE_GROUP_ID_SUPPLIER_BALANCE_TYPE = "00002";
-    /** 编码ID(00002：供应商结算类型的001：单结)*/
-    public static final String CODE_ID_SUPPLIER_BALANCE_SINGLE_TYPE = "001";
-    /** 编码ID(00002：供应商结算类型的002：月结)*/
-    public static final String CODE_ID_SUPPLIER_BALANCE_MONTH_TYPE = "002";
-    /** 编码ID(00002：供应商结算类型的003：季结)*/
-    public static final String CODE_ID_SUPPLIER_BALANCE_SEASON_TYPE = "003";
-    /** 编码ID(00002：供应商结算类型的004：年结)*/
-    public static final String CODE_ID_SUPPLIER_BALANCE_YEAR_TYPE = "004";
 
-    /** 编码组ID(00003：性别)*/
-    public static final String CODE_GROUP_ID_SEX = "00003";
+    /** 编码组ID(00001：性别)*/
+    public static final String CODE_GROUP_ID_SEX = "00001";
 
     /** 编码组ID(00004: 证件类型) */
     public static final String ID_CARD_TYPE_GROUP_ID = "00004";
@@ -1284,8 +1274,8 @@ public interface Constant {
     /** 编码ID(00073：是否有差异, 002:有差异)*/
     public static final String HAS_DIFFERENT_CODE_HAS = "002";
 
-    /** 后台用户状态编码组ID  "00074"*/
-    public static final String USER_STATUS_GROUP_ID = "00074";
+    /** 后台用户状态编码组ID  "00001"*/
+    public static final String USER_STATUS_GROUP_ID = "00002";
     /** 后台用户状态编码ID  001：冻结*/
     public static final String USER_STATUS_CODE_ID_FREEZE = "001";
     /** 后台用户状态编码ID  002：正常*/
