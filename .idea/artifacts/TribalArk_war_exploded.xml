@@ -22,6 +22,13 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.13" />
           <element id="library" level="project" name="Maven: org.springframework.session:spring-session:1.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-aspects:4.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.37" />
@@ -64,6 +71,18 @@
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.2.1" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.3.4" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-core:3.0.5" />
+          <element id="library" level="project" name="Maven: commons-digester:commons-digester:2.0" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-api:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-api:1.0.6" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-jsp:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-servlet:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-servlet:1.0.6" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-template:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-autotag-core-runtime:1.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.6" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.0" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.0" />

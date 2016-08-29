@@ -15,6 +15,8 @@
     <http pattern="/login/**" security="none" />
     <http pattern="/error/**" security="none" />
 
+    <http pattern="/sys/**" security="none" />
+
     <!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session).-->
     <!-- lowercase-comparisons：表示URL比较前先转为小写。-->
     <!-- path-type：表示使用Apache Ant的匹配模式。-->
@@ -31,7 +33,7 @@
         <!-- default-target-url：指定了成功进行身份验证和授权后默认呈现给用户的页面。-->
         <!-- always-use-default-target：指定了是否在身份验证通过后总是跳转到default-target-url属性指定的URL。-->
         <form-login login-page="/login"
-                    authentication-failure-url="/login/verification?error=1"
+                    authentication-failure-url="/login?error=1"
                     login-processing-url="/j_spring_security_check"
                     authentication-success-handler-ref="authenticationSuccessHandler" />
 
@@ -75,10 +77,10 @@
 
     <!-- 认证管理器，使用自定义的UserDetailsService，并对密码采用md5加密 -->
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="eMallAuthenticationManager">
+        <authentication-provider user-service-ref="authenticationService">
             <!-- 用户加密解密类  可以加点“盐”-->
             <password-encoder hash="md5">
-                <!--<salt-source user-property="username"/>-->
+                <salt-source user-property="username"/>
             </password-encoder>
         </authentication-provider>
     </authentication-manager>
@@ -86,22 +88,22 @@
     <!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
     我们的所有控制将在这三个类中实现，解释详见具体配置  -->
     <beans:bean id="eMallFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
-        <beans:property name="securityMetadataSource" ref="securityMetadataSource"/><!-- FilterInvocationSecurityMetadataSource 接口实现类 -->
+        <beans:property name="securityMetadataSource" ref="metadataSourceService"/><!-- FilterInvocationSecurityMetadataSource 接口实现类 -->
         <beans:property name="authenticationManager" ref="authenticationManager"/><!-- 鉴定管理类 -->
-        <beans:property name="accessDecisionManager" ref="eMallAccessDecisionManager"/><!-- AccessDecisionManager 接口实现类 -->
+        <beans:property name="accessDecisionManager" ref="accessDecisionService"/><!-- AccessDecisionManager 接口实现类 -->
     </beans:bean>
 
     <!-- 自定义登录成功后的处理程序及修改默认验证地址 -->
-    <beans:bean id="authenticationSuccessHandler" class="com.emall.security.service.impl.EMallLoginSuccessHandlerImpl">
+    <beans:bean id="authenticationSuccessHandler" class="com.cn.sys.security.service.LoginSuccessHandler">
         <beans:property name="defaultTargetUrl" value="/index"/>
         <beans:property name="forwardToDestination" value="true"/>
     </beans:bean>
 
     <!-- 实现用户认证的入口，主要实现UserDetailsService接口即可 -->
-    <beans:bean id="eMallAuthenticationManager" class="com.emall.security.service.impl.EMallAuthenticationServiceImpl"/>
+    <beans:bean id="authenticationService" class="com.cn.sys.security.service.AuthenticationService"/>
     <!-- 权限抉择接口 -->
-    <beans:bean id="eMallAccessDecisionManager" class="com.emall.security.service.impl.EMallAccessDecisionServiceImpl"/>
+    <beans:bean id="accessDecisionService" class="com.cn.sys.security.service.AccessDecisionService"/>
     <!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问     -->
-    <beans:bean id="securityMetadataSource" class="com.emall.security.service.impl.EMallMetadataSourceServiceImpl" />
+    <beans:bean id="metadataSourceService" class="com.cn.sys.security.service.MetadataSourceService" />
 
 </beans:beans>

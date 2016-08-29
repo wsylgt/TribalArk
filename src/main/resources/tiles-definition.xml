@@ -10,51 +10,41 @@
         <put-attribute name="metas" value="/WEB-INF/views/templates/base/metas.jsp"/>
         <put-attribute name="styles" value="/WEB-INF/views/templates/base/styles.jsp"/>
         <put-attribute name="scripts" value="/WEB-INF/views/templates/base/scripts.jsp"/>
-        <put-attribute name="title" value="北大荒厨房" type="string" />
+        <put-attribute name="title" type="string" value="部落方舟"/>
+        <put-attribute name="left-side" value="/WEB-INF/views/templates/base/left-side.jsp" />
         <put-attribute name="navbar-header" value="/WEB-INF/views/templates/base/navbar-header.jsp" />
-        <put-attribute name="navbar-menu" value="/WEB-INF/views/templates/base/navbar-menu.jsp" />
-        <put-attribute name="container" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/templates/base/footer.jsp"/>
+        <put-attribute name="sidebar" value="/WEB-INF/views/templates/base/sidebar.jsp" />
+        <put-attribute name="body-contents" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/base/sticky-footer.jsp"/>
     </definition>
 
     <definition name="index" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/index.jsp" />
+        <put-attribute name="body-contents" value="/WEB-INF/views/index.jsp" />
     </definition>
 
     <definition name="*.base" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/{1}.jsp" />
+        <put-attribute name="body-contents" value="/WEB-INF/views/{1}.jsp" />
     </definition>
     <definition name="*/*.base" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}.jsp" />
+        <put-attribute name="body-contents" value="/WEB-INF/views/{1}/{2}.jsp" />
     </definition>
     <definition name="*/*/*.base" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+        <put-attribute name="body-contents" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
     </definition>
     <definition name="*/*/*/*.base" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp" />
+        <put-attribute name="body-contents" value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp" />
     </definition>
 
-    <!-- Default Main Template -->
-    <definition name="login.template" template="/WEB-INF/views/templates/login_layout.jsp">
+    <!-- 自定义 Main Template -->
+    <definition name="user-defined.template" template="/WEB-INF/views/templates/login_layout.jsp">
         <put-attribute name="metas" value="/WEB-INF/views/templates/base/metas.jsp"/>
         <put-attribute name="styles" value="/WEB-INF/views/templates/base/styles.jsp"/>
         <put-attribute name="scripts" value="/WEB-INF/views/templates/base/scripts.jsp"/>
-        <put-attribute name="title" value="北大荒厨房" type="string" />
-        <put-attribute name="container" value=""/>
+        <put-attribute name="title" type="string" value="部落方舟"/>
+        <put-attribute name="body-contents" value=""/>
     </definition>
-    <definition name="login" extends="login.template">
-        <put-attribute name="container" value="/WEB-INF/views/login.jsp" />
-    </definition>
-    <definition name="*.demo" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/demo/{1}.jsp" />
-    </definition>
-    <definition name="demo/*.demo" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/demo/demo/{1}.jsp" />
-    </definition>
-    <definition name="*/*/*.demo" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/demo/{1}/{2}/{3}.jsp" />
-    </definition>
-    <definition name="*/*/*/*.demo" extends="base.template">
-        <put-attribute name="container" value="/WEB-INF/views/demo/{1}/{2}/{3}/{4}.jsp" />
+    <!-- login Main Template -->
+    <definition name="login" extends="user-defined.template">
+        <put-attribute name="body-contents" value="/WEB-INF/views/login.jsp" />
     </definition>
 </tiles-definitions>

@@ -3,10 +3,9 @@
  * <p>用户角色表Dao接口</p>
  * Copyright 2016-2016
  */
-package com.emall.dao.repositorys;
+package com.cn.dao.repositorys;
 
-import com.emall.dao.entity.UmUserRoleEntity;
-
+import com.cn.dao.entity.UmUserRoleEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -19,7 +18,7 @@ import java.util.List;
  * @version 1.0 2016/4/23
  */
 @Repository
-public interface IUmUserRoleRepository extends BaseRepository<UmUserRoleEntity, Long> {
+public interface UmUserRoleRepository extends IBaseRepository<UmUserRoleEntity, Long> {
 
     /**
      * 根据用户Id查询用户信息

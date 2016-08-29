@@ -1,4 +1,4 @@
-package com.emall.util;
+package com.cn.utils;
 
 import java.util.UUID;
 
@@ -18,26 +18,22 @@ public class Md5EncryptUtils {
     /**
      * 日志对象
      */
-    private static Log logger = LogFactory.getLog(ConvertUtils.class);
-
-    /**
-     * 加密key
-     */
-    private static final String LOCK_KEY = null;
+    private static Log logger = LogFactory.getLog(Md5EncryptUtils.class);
 
     /**
      * 给用户密码加密
      *
      * @param password JSP页面得到的密码
+     * @param encoder 盐
      * @return 加密后的密码
      */
-    public static String getMd5Encrypt(String password) {
+    public static String getMd5Encrypt(String password,String encoder) {
 
         logger.debug("getMd5Encrypt : 给用户密码加密");
 
         Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 
-        String md5Password = md5.encodePassword(password, LOCK_KEY);
+        String md5Password = md5.encodePassword(password, encoder);
 
         return md5Password;
     }
@@ -47,15 +43,16 @@ public class Md5EncryptUtils {
      *
      * @param password   JSP页面得到的密码
      * @param dbPassword 数据库中得到的密码
+     * @param encoder 盐
      * @return true:密码正确    false:密码错误
      */
-    public static boolean isPasswordValid(String password, String dbPassword) {
+    public static boolean isPasswordValid(String password, String dbPassword, String encoder) {
 
         logger.debug("isPasswordValid : 判断用户的密码是否正确");
 
         Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 
-        boolean valid = md5.isPasswordValid(dbPassword, password, LOCK_KEY);
+        boolean valid = md5.isPasswordValid(dbPassword, password, encoder);
 
         return valid;
 
@@ -72,6 +69,6 @@ public class Md5EncryptUtils {
         //JAVA UUID 生成
         UUID uuid = UUID.randomUUID();
 
-        return Md5EncryptUtils.getMd5Encrypt(uuid.toString());
+        return Md5EncryptUtils.getMd5Encrypt(uuid.toString(),"");
     }
 }

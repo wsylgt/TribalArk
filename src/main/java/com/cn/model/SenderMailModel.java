@@ -1,4 +1,4 @@
-package com.emall.base.model;
+package com.cn.model;
 
 import java.io.Serializable;
 

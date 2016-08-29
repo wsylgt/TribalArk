@@ -17,48 +17,31 @@
   <title><tiles:insertAttribute name="title" ignore="true"/></title>
   <tiles:insertAttribute name="styles" ignore="true"/>
   <tiles:insertAttribute name="scripts" ignore="true"/>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
 </head>
-<body class="sticky-header">
+<body>
+<div id="wrapper">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <tiles:insertAttribute name="navbar-header" ignore="true"/>
+    <tiles:insertAttribute name="sidebar" ignore="true"/>
+  </nav>
 
-<section>
+  <div id="page-wrapper">
 
-  <!-- left side start-->
-  <div class="left-side sticky-left-side">
-    <tiles:insertAttribute name="left-side" ignore="true"/>
-  </div>
-  <!-- left side end-->
-
-  <!-- main content start-->
-  <div class="main-content">
-
-    <!-- header section start-->
-    <div class="header-section">
-      <tiles:insertAttribute name="header-section" ignore="true"/>
-    </div>
-    <!-- header section end-->
-
-    <!-- page heading start-->
-    <div class="page-heading">
-      Page Tittle goes here
-    </div>
-    <!-- page heading end-->
-
-    <!--body wrapper start-->
-    <div class="wrapper">
-      <tiles:insertAttribute name="body-contents" ignore="true"/>
-    </div>
-    <!--body wrapper end-->
-
-    <!--footer section start-->
-    <footer class="sticky-footer">
-      <tiles:insertAttribute name="sticky-footer" ignore="true"/>
+    <tiles:insertAttribute name="body-contents" ignore="true"/>
+    <footer>
+      <%-- Footer ================================================== --%>
+      <tiles:insertAttribute name="footer" ignore="true"/>
     </footer>
-    <!--footer section end-->
-
-
   </div>
-  <!-- main content end-->
+</div>
 
-</section>
 </body>
 </html>

@@ -3,15 +3,14 @@
  * <p>编辑各订单编号<br>
  * Copyright 2016-2016
  */
-package com.emall.base.component;
+package com.cn.component;
 
-import com.emall.util.DateFormatUtils;
+import com.cn.content.Constant;
+import com.cn.utils.DateFormatUtils;
+import com.cn.utils.StringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
-
-import com.emall.content.Constant;
-import com.emall.util.StringUtil;
 
 import java.util.Date;
 
@@ -293,7 +292,7 @@ public class CodeNoEditManage {
      * <p>前缀2位[PA]+年月日6位+客户类型[1,2]+变动方式1位[1/2]+序号10位
      * 客户类型[1，2]：1：普通客户 2：大客户 
      * 变动方式[1]：充值;变动方式[2]：订单支付<br/>
-     * @param seqId 交易变动方式ID
+     * @param paySeqCheckId 交易变动方式ID
      * @param payAccountId 账户流水ID
      * @param sysDate 系统日期
      * @return 账户流水编号
@@ -418,7 +417,7 @@ public class CodeNoEditManage {
      * 前补0，大于9位，取订单id后9位
      * </p>
      * 
-     * @param salesOrderId
+     * @param returnOrderId
      *            销售订单ID
      * @param sysDate
      *            系统日期
@@ -484,7 +483,8 @@ public class CodeNoEditManage {
      * 编辑货品批号
      * <p>货品编号+生产日期6位[yyMMdd]+采购订单ID10位<br>
      * @param productNo 货品编号
-     * @param productDate 生产日期6位[yyMMdd]
+     * @param produceDate 生产日期6位[yyMMdd]
+     * @param purOrderId
      * @return 货品批号
      */
     public String editProductLotNo(String productNo, String produceDate, String purOrderId) {
@@ -521,7 +521,7 @@ public class CodeNoEditManage {
      * 编辑供应商编号
      * <p>前缀1位[S]+供应商类型1位[1/2/3]+供应商ID6位<br>
      * @param supplierId 供应商ID
-     * @param sysDate 系统日期6位[yyMMdd]
+     * @param supplierTypeCodeId 系统日期6位[yyMMdd]
      * @return 采购订单编号
      */
     public String editSupplierNo(String supplierId, String supplierTypeCodeId) {

@@ -3,7 +3,7 @@
  * <p>系统所有的角色Model </p>
  * Copyright 2016-2016 .
  */
-package com.emall.um.usermanage.model;
+package com.cn.sys.usermanage.model;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;

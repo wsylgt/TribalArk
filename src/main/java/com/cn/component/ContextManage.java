@@ -3,13 +3,10 @@
  *
  * Copyright 2016-2016 .
  */
-package com.emall.base.component;
+package com.cn.component;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.cn.model.StatusModel;
+import com.cn.sys.security.model.SecurityUser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -19,11 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.emall.base.model.StatusModel;
-import com.emall.content.Constant;
-import com.emall.dao.repositorys.IMSequenceTRepository;
-import com.emall.security.model.SecurityUserModel;
-import com.emall.util.DateFormatUtils;
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * 系统共通方法
@@ -36,41 +30,27 @@ public class ContextManage {
 
     /** 日志对象 */
     private static Log logger = LogFactory.getLog(ContextManage.class);
-    
-    /** 顺序表DAO注入 */
-    @Resource
-    private IMSequenceTRepository iMSequenceTRepository;
-    
-    /**
-     * 获取系统时间
-     * @param pattern 日期格式
-     * @return  java.util.Date数据
-     */
-    public Date getSystemTime(){
-        logger.debug("getSystemTime : 获取系统时间");
-        return DateFormatUtils.parseDate(iMSequenceTRepository.searchSystemTime(), Constant.DEFAULT_DATETIME_FORMAT);
-    }
+
 
     /**
      * 取得用户信息
      * <p>从Context内取出用户<br>
-     * @param 无
      * @return 用户信息
      */
-    public  SecurityUserModel getUserInfo(){
+    public SecurityUser getUserInfo(){
         logger.debug("getUserInfo : 取用户信息");
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
         if(authentication == null){
-            return new SecurityUserModel(null);
+            return new SecurityUser(null);
         }
         Object principal = context.getAuthentication().getPrincipal();
 
-        if(principal instanceof SecurityUserModel) {
-            SecurityUserModel securityUser = (SecurityUserModel)principal;
+        if(principal instanceof SecurityUser) {
+            SecurityUser securityUser = (SecurityUser)principal;
             return securityUser;
         }
-        return new SecurityUserModel(null);
+        return new SecurityUser(null);
     }
 
     /**
@@ -92,7 +72,6 @@ public class ContextManage {
     /**
      * 取得用户信息
      * <p>从Context内取出用户<br>
-     * @param 无
      * @return 用户信息
      */
     public  String getStatus(){

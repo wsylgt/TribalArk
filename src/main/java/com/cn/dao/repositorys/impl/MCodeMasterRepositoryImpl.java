@@ -3,7 +3,9 @@
  * <p>对编码信息表进行数据操作的实体类<br>
  * Copyright 2016-2016
  */
-package com.emall.dao.repositorys.impl;
+package com.cn.dao.repositorys.impl;
+
+import com.cn.dao.entity.MCodeMasterEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,15 +15,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.emall.dao.entity.MCodeMasterEntity;
-
 /**
  * 编码信息表Dao实体类
  * <p>对编码信息表进行数据操作的实体类<br>
  * @author 孙亮
  * @version 1.0 2016/5/4
  */
-public class IMCodeMasterRepositoryImpl {
+public class MCodeMasterRepositoryImpl {
 
     /** JPA实体管理对象*/
     @PersistenceContext

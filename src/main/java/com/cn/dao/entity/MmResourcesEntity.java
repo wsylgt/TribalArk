@@ -1,4 +1,4 @@
-package com.emall.dao.entity;
+package com.cn.dao.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,9 +31,13 @@ public class MmResourcesEntity implements Serializable {
     @Column(name="resource_name")
     private String resourceName;
 
-    /** 资源类型 */
-    @Column(name="resource_type")
-    private String resourceType;
+    /** 资源类型编码组ID */
+    @Column(name="resource_type_group_id")
+    private String resourceTypeGroupId;
+
+    /** 资源类型编码ID */
+    @Column(name="resource_type_code_id")
+    private String resourceTypeCodeId;
 
     /** 资源所属ID */
     @Column(name="attribution_id")
@@ -121,19 +125,35 @@ public class MmResourcesEntity implements Serializable {
     }
 
     /**
-     * 资源类型的取得
-     * @return 资源类型
+     * 资源类型编码组ID的取得
+     * @return 资源类型编码组ID
      */
-    public String getResourceType() {
-        return this.resourceType;
+    public String getResourceTypeGroupId() {
+        return this.resourceTypeGroupId;
     }
 
     /**
-     * 资源类型的设定
-     * @param resourceType 资源类型
+     * 资源类型编码组ID的设定
+     * @param resourceTypeGroupId 资源类型编码组ID
      */
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
+    public void setResourceTypeGroupId(String resourceTypeGroupId) {
+        this.resourceTypeGroupId = resourceTypeGroupId;
+    }
+
+    /**
+     * 资源类型编码ID的取得
+     * @return 资源类型编码ID
+     */
+    public String getResourceTypeCodeId() {
+        return this.resourceTypeCodeId;
+    }
+
+    /**
+     * 资源类型编码ID的设定
+     * @param resourceTypeCodeId 资源类型编码ID
+     */
+    public void setResourceTypeCodeId(String resourceTypeCodeId) {
+        this.resourceTypeCodeId = resourceTypeCodeId;
     }
 
     /**
@@ -306,9 +326,14 @@ public class MmResourcesEntity implements Serializable {
         sbBeanContent.append(resourceName);
         sbBeanContent.append(",");
 
-        // 资源类型
-        sbBeanContent.append("resourceType=");
-        sbBeanContent.append(resourceType);
+        // 资源类型编码组ID
+        sbBeanContent.append("resourceTypeGroupId=");
+        sbBeanContent.append(resourceTypeGroupId);
+        sbBeanContent.append(",");
+
+        // 资源类型编码ID
+        sbBeanContent.append("resourceTypeCodeId=");
+        sbBeanContent.append(resourceTypeCodeId);
         sbBeanContent.append(",");
 
         // 资源所属ID

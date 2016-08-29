@@ -1,4 +1,4 @@
-package com.emall.dao.entity;
+package com.cn.dao.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,18 +26,6 @@ public class AmAuthoritiesEntity implements Serializable {
     /** 权限标识 */
     @Column(name="authority_mark")
     private String authorityMark;
-
-    /** 权限状态编码组ID */
-    @Column(name="authority_status_group_id")
-    private String authorityStatusGroupId;
-
-    /** 权限状态编码ID */
-    @Column(name="authority_status_code_id")
-    private String authorityStatusCodeId;
-
-    /** 权限名称 */
-    @Column(name="authority_name")
-    private String authorityName;
 
     /** 权限描述 */
     @Column(name="authority_describe")
@@ -98,54 +86,6 @@ public class AmAuthoritiesEntity implements Serializable {
      */
     public void setAuthorityMark(String authorityMark) {
         this.authorityMark = authorityMark;
-    }
-
-    /**
-     * 权限状态编码组ID的取得
-     * @return 权限状态编码组ID
-     */
-    public String getAuthorityStatusGroupId() {
-        return this.authorityStatusGroupId;
-    }
-
-    /**
-     * 权限状态编码组ID的设定
-     * @param authorityStatusGroupId 权限状态编码组ID
-     */
-    public void setAuthorityStatusGroupId(String authorityStatusGroupId) {
-        this.authorityStatusGroupId = authorityStatusGroupId;
-    }
-
-    /**
-     * 权限状态编码ID的取得
-     * @return 权限状态编码ID
-     */
-    public String getAuthorityStatusCodeId() {
-        return this.authorityStatusCodeId;
-    }
-
-    /**
-     * 权限状态编码ID的设定
-     * @param authorityStatusCodeId 权限状态编码ID
-     */
-    public void setAuthorityStatusCodeId(String authorityStatusCodeId) {
-        this.authorityStatusCodeId = authorityStatusCodeId;
-    }
-
-    /**
-     * 权限名称的取得
-     * @return 权限名称
-     */
-    public String getAuthorityName() {
-        return this.authorityName;
-    }
-
-    /**
-     * 权限名称的设定
-     * @param authorityName 权限名称
-     */
-    public void setAuthorityName(String authorityName) {
-        this.authorityName = authorityName;
     }
 
     /**
@@ -279,21 +219,6 @@ public class AmAuthoritiesEntity implements Serializable {
         // 权限标识
         sbBeanContent.append("authorityMark=");
         sbBeanContent.append(authorityMark);
-        sbBeanContent.append(",");
-
-        // 权限状态编码组ID
-        sbBeanContent.append("authorityStatusGroupId=");
-        sbBeanContent.append(authorityStatusGroupId);
-        sbBeanContent.append(",");
-
-        // 权限状态编码ID
-        sbBeanContent.append("authorityStatusCodeId=");
-        sbBeanContent.append(authorityStatusCodeId);
-        sbBeanContent.append(",");
-
-        // 权限名称
-        sbBeanContent.append("authorityName=");
-        sbBeanContent.append(authorityName);
         sbBeanContent.append(",");
 
         // 权限描述

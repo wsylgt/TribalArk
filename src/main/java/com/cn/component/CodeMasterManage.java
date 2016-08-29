@@ -3,7 +3,7 @@
  * <p>编码表信息取得共通方法<br>
  * Copyright 2016-2016
  */
-package com.emall.base.component;
+package com.cn.component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,15 +12,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.cn.content.Constant;
+import com.cn.dao.entity.MCodeMasterEntity;
+import com.cn.dao.entity.id.MCodeMasterPk;
+import com.cn.dao.repositorys.MCodeMasterRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
-
-import com.emall.content.Constant;
-import com.emall.dao.entity.MCodeMasterEntity;
-import com.emall.dao.entity.id.MCodeMasterPk;
-import com.emall.dao.repositorys.IMCodeMasterRepository;
 
 /**
  * 编码表信息取得共通方法类
@@ -36,7 +35,7 @@ public class CodeMasterManage {
     
     /** 编码信息表Dao */
     @Resource
-    private IMCodeMasterRepository iMCodeMasterRepository;
+    private MCodeMasterRepository iMCodeMasterRepository;
     
     /**
      * 取得该编码组ID对应的下拉框选择信息
@@ -55,7 +54,7 @@ public class CodeMasterManage {
             Constant.CODE_MASTER_COLUMN_SORT_ORDER);
         
         // 取得该编码组ID的编码信息
-        List<MCodeMasterEntity> codeMasterInfoList = 
+        List<MCodeMasterEntity> codeMasterInfoList =
             iMCodeMasterRepository.findByCodeGroupIdAndShowFlag(
                 codeGroupId, Constant.CODE_MASTER_SHOW_FLAG_SHOW, sort);
         

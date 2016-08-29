@@ -1,4 +1,4 @@
-package com.emall.um.usermanage.model;
+package com.cn.sys.usermanage.model;
 
 import org.springframework.data.domain.Page;
 

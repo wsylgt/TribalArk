@@ -1,4 +1,4 @@
-package com.emall.base.component;
+package com.cn.component;
 
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.cn.dao.entity.UmUserOperationLogEntity;
+import com.cn.dao.repositorys.UmUserOperationLogRepository;
+import com.cn.sys.security.model.SecurityUser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
@@ -14,7 +17,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
@@ -23,9 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.fastjson.JSONArray;
-import com.emall.dao.entity.UmUserOperationLogEntity;
-import com.emall.dao.repositorys.IUmUserOperationLogRepository;
-import com.emall.security.model.SecurityUserModel;
+
 
 /**
  * spring AOP切面类
@@ -42,14 +42,18 @@ public class SystemLogAspect {
 
     /** 注入Service用于把日志保存数据库 */
     @Resource
-    private IUmUserOperationLogRepository iUmUserOperationLogRepository;
+    private UmUserOperationLogRepository userOperationLogRepository;
 
     /** 系统的Context */
-    @Autowired
+    @Resource
     private ContextManage context;
 
+    /** 系统的Context */
+    @Resource
+    private SystemDateManage systemDate;
+
     /** 切点 */
-    @Pointcut("@annotation(com.emall.base.component.SystemLog)")
+    @Pointcut("@annotation(com.cn.component.SystemLog)")
     public void pointcut() {
     }
 
@@ -61,17 +65,17 @@ public class SystemLogAspect {
      public  void doAfter(JoinPoint joinPoint) {
         /*DBContextHolder.setDBType(Constant.DATA_SOURCE_MASTER);*/
         //系统时间
-        Date date = context.getSystemTime();
+        Date date = systemDate.getSystemTime();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();    
         // 获得用户账号
         SecurityContextImpl securityContextImpl = (SecurityContextImpl)request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
         UsernamePasswordAuthenticationToken userNameAndPass = (UsernamePasswordAuthenticationToken)securityContextImpl.getAuthentication();
-        SecurityUserModel model = (SecurityUserModel)userNameAndPass.getPrincipal();
-        String name = model.getUserDetail().getUserName();
+        SecurityUser model = (SecurityUser)userNameAndPass.getPrincipal();
+        String name = model.getUsername();
         //获取请求IP
         String ip = request.getRemoteAddr();
         //用户ID
-        long userId = model.getUserDetail().getUserId();
+        long userId = model.getUser().getUserId();
         //方法参数
         String params = "";
         if (joinPoint.getArgs() !=  null && joinPoint.getArgs().length > 0) {
@@ -117,7 +121,7 @@ public class SystemLogAspect {
              //修改人
              log.setUpdateUser(name);
              // 保存数据库
-             iUmUserOperationLogRepository.save(log);
+             userOperationLogRepository.save(log);
         }  catch (Exception ex) {    
             //记录本地异常日志    
             logger.error("==异常通知异常==");
@@ -156,7 +160,6 @@ public class SystemLogAspect {
     /**
      * 是否存在注解，如果存在就记录日志
      * @param joinPoint
-     * @param controllerLog
      * @return
      * @throws Exception
      */

@@ -1,4 +1,4 @@
-package com.emall.base.component;
+package com.cn.component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

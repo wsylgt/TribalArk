@@ -6,20 +6,25 @@
   HISTORY   : 2016/4/16 begin
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%-- 常量引用 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <jsp:include page="constant.jsp" /> --%>
 <c:set var="basePath" value='${pageContext.request.getContextPath()}' />
-<!--icheck-->
-<link href="${basePath}/resource/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
-<link href="${basePath}/resource/js/iCheck/skins/square/square.css" rel="stylesheet">
-<link href="${basePath}/resource/js/iCheck/skins/square/red.css" rel="stylesheet">
-<link href="${basePath}/resource/js/iCheck/skins/square/blue.css" rel="stylesheet">
 
-<!--dashboard calendar-->
-<link href="${basePath}/resource/css/clndr.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="${basePath}/resource/plugin/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-<!--Morris Chart CSS -->
-<link rel="stylesheet" href="${basePath}/resource/js/morris-chart/morris.css">
+<!-- MetisMenu CSS -->
+<link href="${basePath}/resource/plugin/metisMenu/1.1.3/css/metisMenu.min.css" rel="stylesheet">
 
-<!--common-->
-<link href="${basePath}/resource/css/style.css" rel="stylesheet">
-<link href="${basePath}/resource/css/style-responsive.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="${basePath}/resource/plugin/sb-admin/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="${basePath}/resource/plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Custom css -->
+<link href="${basePath}/resource/css/style.css" rel="stylesheet" type="text/css">
+
+<%--  bootstrapValidator验证	 --%>
+<link href="${basePath}/resource/plugin/bootstrapvalidator/css/bootstrapValidator.css" rel="stylesheet" />

@@ -27,10 +27,4 @@ public interface AmAuthoritiesRepository extends IBaseRepository<AmAuthoritiesEn
      */
     List<AmAuthoritiesEntity> findByAuthorityIdIn(Collection<Long> authorityIds);
 
-    /**
-     * 根据权限状态编码组ID取得权限
-     * @param authorityStatusGroupId
-     * @return
-     */
-    List<AmAuthoritiesEntity> findByAuthorityStatusGroupId(String authorityStatusGroupId);
 }

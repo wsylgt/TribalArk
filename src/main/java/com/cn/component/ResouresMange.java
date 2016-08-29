@@ -1,4 +1,4 @@
-package com.emall.base.component;
+package com.cn.component;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -32,11 +32,6 @@ public class ResouresMange {
     @Value("${resources.server.tempUrl}")
     private String tempUrl;
     
-    /** redis客户端失效时间 **/
-    @Value("${redis.maxInactiveIntervalInSeconds}")
-    private int maxInactiveIntervalInSeconds;
-    
-    
     public String getServerUrl() {
         return serverUrl;
     }
@@ -56,7 +51,5 @@ public class ResouresMange {
     public String getTempUrl() {
         return serverUrl + tempUrl;
     }
-    public int getMaxInactiveIntervalInSeconds() {
-        return maxInactiveIntervalInSeconds;
-    }
+
 }

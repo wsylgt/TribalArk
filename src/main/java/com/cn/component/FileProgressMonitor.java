@@ -1,4 +1,4 @@
-package com.emall.base.component;
+package com.cn.component;
 
 import java.text.DecimalFormat;
 import java.util.Timer;

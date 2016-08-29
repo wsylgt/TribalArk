@@ -1,4 +1,4 @@
-package com.emall.base.component;
+package com.cn.component;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

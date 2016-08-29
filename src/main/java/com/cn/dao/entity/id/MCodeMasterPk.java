@@ -1,4 +1,4 @@
-package com.emall.dao.entity.id;
+package com.cn.dao.entity.id;
 
 import java.io.Serializable;
 

@@ -11,11 +11,26 @@
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
   <!-- 默认扫描Controller的包路径 -->
-  <context:component-scan base-package="com.cn.api.*.controller"/>
+  <context:component-scan base-package="com.cn.index.controller"/>
+  <context:component-scan base-package="com.cn.*.*.controller"/>
   <!-- 添加注解驱动 -->
   <mvc:annotation-driven/>
   <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
   <mvc:default-servlet-handler/>
+
+  <!-- 视图解析,加载tiles配置文件-->
+  <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <property name="definitions">
+      <list>
+        <value>classpath:tiles-definition.xml</value>
+      </list>
+    </property>
+  </bean>
+  <!-- Tiles3整合SpringMVC,配置多个viewResolver -->
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <property name="order" value="1"/>
+    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+  </bean>
 
   <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -60,6 +75,7 @@
   </bean>
 
   <!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
+  <!--
   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
     <property name="messageConverters">
       <list>
@@ -76,4 +92,5 @@
       </list>
     </property>
   </bean>
+  -->
 </beans>

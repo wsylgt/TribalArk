@@ -1,10 +1,10 @@
-package com.emall.base.component;
+package com.cn.component;
 
-import com.emall.base.model.LogModel;
-import com.emall.dao.entity.UmUserOperationLogEntity;
-import com.emall.dao.repositorys.IUmUserOperationLogRepository;
-import com.emall.security.model.SecurityUserModel;
-import com.emall.util.ValidateUtil;
+import com.cn.dao.entity.UmUserOperationLogEntity;
+import com.cn.dao.repositorys.UmUserOperationLogRepository;
+import com.cn.model.LogModel;
+import com.cn.sys.security.model.SecurityUser;
+import com.cn.utils.ValidateUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +31,16 @@ public class LogCustomAdd {
 
     /** 注入Service用于把日志保存数据库 */
     @Resource
-    private IUmUserOperationLogRepository iUmUserOperationLogRepository;
+    private UmUserOperationLogRepository userOperationLogRepository;
 
     /** 系统的Context */
     @Autowired
     private ContextManage context;
+
+
+    /** 系统的Context */
+    @Autowired
+    private SystemDateManage systemDate;
 
     /**
      * 自定义数据库LOG添加(methodName必须非空)
@@ -44,7 +49,7 @@ public class LogCustomAdd {
     public void addLog(LogModel logModel) {
         logger.debug("addLog : 数据库LOG添加不含方法参数");
         //系统时间
-        Date date = context.getSystemTime();
+        Date date = systemDate.getSystemTime();
         // request
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
@@ -54,11 +59,11 @@ public class LogCustomAdd {
         UsernamePasswordAuthenticationToken userNameAndPass = (UsernamePasswordAuthenticationToken) securityContextImpl
                 .getAuthentication();
         //数据库表um_user_t的实体类
-        SecurityUserModel model = (SecurityUserModel) userNameAndPass.getPrincipal();
+        SecurityUser model = (SecurityUser) userNameAndPass.getPrincipal();
         //登陆者
-        String name = model.getUserDetail().getUserName();
+        String name = model.getUsername();
         //用户ID
-        long userId = model.getUserDetail().getUserId();
+        long userId = model.getUser().getUserId();
         // 获取请求ip
         String ip = request.getRemoteAddr();
         //用户操作日志表Entity
@@ -96,6 +101,6 @@ public class LogCustomAdd {
         //修改人
         log.setUpdateUser(name);
         // 保存数据库
-        iUmUserOperationLogRepository.save(log);
+        userOperationLogRepository.save(log);
     }
 }

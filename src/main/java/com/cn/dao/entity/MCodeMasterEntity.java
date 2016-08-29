@@ -1,4 +1,6 @@
-package com.emall.dao.entity;
+package com.cn.dao.entity;
+
+import com.cn.dao.entity.id.MCodeMasterPk;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import com.emall.dao.entity.id.MCodeMasterPk;
 
 /**
  * 编码信息表Entity

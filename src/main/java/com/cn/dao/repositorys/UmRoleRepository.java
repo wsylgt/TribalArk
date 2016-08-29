@@ -3,13 +3,12 @@
  * <p>角色表Dao</p>
  * Copyright 2016-2016 .
  */
-package com.emall.dao.repositorys;
-
-import com.emall.dao.entity.UmRoleEntity;
+package com.cn.dao.repositorys;
 
 import java.util.Collection;
 import java.util.List;
 
+import com.cn.dao.entity.UmRoleEntity;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0 2016/5/16
  */
 @Repository
-public interface IUmRoleRepository extends BaseRepository<UmRoleEntity, Long> {
+public interface UmRoleRepository extends IBaseRepository<UmRoleEntity, Long> {
 
     /**
      * 根据角色Id组 查询角色信息

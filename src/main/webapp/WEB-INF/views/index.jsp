@@ -6,11 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-  <title>Title</title>
-</head>
-<body>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="basePath" value='${pageContext.request.getContextPath()}'/>
 
-</body>
-</html>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Dashboard</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Blank</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>

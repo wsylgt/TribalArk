@@ -86,7 +86,6 @@
 
   <!-- 注意一点.最好是将DelegatingFilterProxy写在DispatcherServlet之前.否则 SpringSecurity可能不会正常工作 -->
   <!-- Spring Security 代理Servlet过滤器 配置 -->
-  <!--
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -96,7 +95,6 @@
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  -->
 
   <!-- 默认的错误处理页面 -->
   <error-page>
@@ -119,8 +117,6 @@
   </error-page>
   <!-- 首页 -->
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
 

@@ -1,4 +1,4 @@
-package com.cn.api.model;
+package com.cn.sys.usermanage.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.domain.Page;
@@ -33,6 +33,10 @@ public class UserModel implements Serializable {
     /** 邮箱 */
     @Email(message = "{Message_Id_0033}")
     private String email;
+    
+    /** 身份证号码 */
+    @Size(max = 30, message = "{Message_Id_0007}")
+    private String idCardNo;
 
     /** 手机号 */
     @Size(max = 11, message = "{Message_Id_0007}")
@@ -45,10 +49,19 @@ public class UserModel implements Serializable {
     /** 用户描述 */
     @Size(max = 20, message = "{Message_Id_0007}")
     private String userDescription;
+    
+    /** 性别编码ID */
+    private String sexCodeId;
+
+    /** 用户性质编码ID */
+    private String userPropertyCodeId;
 
     /** 用户状态编码ID */
     private String userStatusCodeId;
-
+    
+    /** 是否删除, 0: 否, 1: 是 */
+    private String isDelete;
+    
     /** 创建时间 */
     private Date createTime;
     
@@ -118,6 +131,20 @@ public class UserModel implements Serializable {
     }
 
     /**
+     * @return idCardNo 返回
+     */
+    public String getIdCardNo() {
+        return idCardNo;
+    }
+
+    /**
+     * @param idCardNo 设定
+     */
+    public void setIdCardNo(String idCardNo) {
+        this.idCardNo = idCardNo;
+    }
+
+    /**
      * @return cellphoneNo 返回
      */
     public String getCellphoneNo() {
@@ -160,6 +187,34 @@ public class UserModel implements Serializable {
     }
 
     /**
+     * @return sexCodeId 返回
+     */
+    public String getSexCodeId() {
+        return sexCodeId;
+    }
+
+    /**
+     * @param sexCodeId 设定
+     */
+    public void setSexCodeId(String sexCodeId) {
+        this.sexCodeId = sexCodeId;
+    }
+
+    /**
+     * @return userPropertyCodeId 返回
+     */
+    public String getUserPropertyCodeId() {
+        return userPropertyCodeId;
+    }
+
+    /**
+     * @param userPropertyCodeId 设定
+     */
+    public void setUserPropertyCodeId(String userPropertyCodeId) {
+        this.userPropertyCodeId = userPropertyCodeId;
+    }
+
+    /**
      * @return userStatusCodeId 返回
      */
     public String getUserStatusCodeId() {
@@ -171,6 +226,20 @@ public class UserModel implements Serializable {
      */
     public void setUserStatusCodeId(String userStatusCodeId) {
         this.userStatusCodeId = userStatusCodeId;
+    }
+
+    /**
+     * @return isDelete 返回
+     */
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    /**
+     * @param isDelete 设定
+     */
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
     }
 
     /**

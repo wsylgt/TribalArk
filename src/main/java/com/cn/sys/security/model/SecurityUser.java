@@ -3,10 +3,10 @@
  * <p>用户登录验证<br> 
  * Copyright 2016-2016 .
  */
-package com.emall.security.model;
+package com.cn.sys.security.model;
+
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.Collection;
  * @author 王成龙
  * @version 1.0 2016/4/23
  */
-public class SecurityUserModel implements UserDetails {
+public class SecurityUser implements UserDetails {
 
 	/**
      * 序列化
@@ -27,11 +27,8 @@ public class SecurityUserModel implements UserDetails {
     /** 后台用户 */
     private User user;
 
-    /** 用户Model */
-    private UmUserModel userDetail;
-
     /** 用戶构造函数 */
-    public SecurityUserModel(User user){
+    public SecurityUser(User user){
         this.user = user;
     }
 
@@ -51,24 +48,6 @@ public class SecurityUserModel implements UserDetails {
      */
     public void setUser(User user) {
         this.user = user;
-    }
-
-    /**
-     * 用户信息的取得
-     *
-     * @return userDetail 用户信息
-     */
-    public UmUserModel getUserDetail() {
-        return userDetail;
-    }
-
-    /**
-     * 用户信息的设定
-     *
-     * @param userDetail 用户信息
-     */
-    public void setUserDetail(UmUserModel userDetail) {
-        this.userDetail = userDetail;
     }
 
     /**
