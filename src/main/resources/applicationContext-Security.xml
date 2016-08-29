@@ -15,8 +15,6 @@
     <http pattern="/login/**" security="none" />
     <http pattern="/error/**" security="none" />
 
-    <http pattern="/sys/**" security="none" />
-
     <!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session).-->
     <!-- lowercase-comparisons：表示URL比较前先转为小写。-->
     <!-- path-type：表示使用Apache Ant的匹配模式。-->

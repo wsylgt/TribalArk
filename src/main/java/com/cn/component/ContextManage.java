@@ -7,6 +7,7 @@ package com.cn.component;
 
 import com.cn.model.StatusModel;
 import com.cn.sys.security.model.SecurityUser;
+import com.cn.sys.security.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 
 
 /**
@@ -37,20 +39,20 @@ public class ContextManage {
      * <p>从Context内取出用户<br>
      * @return 用户信息
      */
-    public SecurityUser getUserInfo(){
+    public User getUser(){
         logger.debug("getUserInfo : 取用户信息");
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
         if(authentication == null){
-            return new SecurityUser(null);
+            return new User("","",null);
         }
         Object principal = context.getAuthentication().getPrincipal();
 
         if(principal instanceof SecurityUser) {
             SecurityUser securityUser = (SecurityUser)principal;
-            return securityUser;
+            return securityUser.getUser();
         }
-        return new SecurityUser(null);
+        return new User("","",null);
     }
 
     /**

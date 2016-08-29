@@ -279,6 +279,7 @@ public interface Constant {
     /** 表字段名定数  --------------结束-------------- */
 
     /** 业务定数  --------------开始-------------- */
+
     /** 逻辑删除标识(0:正常） */
     public static final String DELETE_FLAG_NORMAL_CODE = "0";
     /** 逻辑删除标识(1:冻结） */
@@ -338,6 +339,11 @@ public interface Constant {
     public static final String IS_EXIST_FLG_NO = "0";
     /** 角色是否已经拥有某一个资源的权限 1：已拥有*/
     public static final String IS_EXIST_FLG_YES = "1";
+
+    /** 资源是否可用 "enable"可用 */
+    public static final String RESOURCE_ENABLE = "enable";
+    /** 资源是否可用 "disable"不可用 */
+    public static final String RESOURCE_DISABLE = "disable";
 
     /** 资源ID为 0*/
     public static final long RESOURCE_ID_ZERO = 0;

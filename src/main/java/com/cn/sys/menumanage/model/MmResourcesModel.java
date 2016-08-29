@@ -1,8 +1,10 @@
-package com.cn.dao.entity;
+package com.cn.sys.menumanage.model;
 
-import javax.persistence.*;
+import com.cn.sys.authoritymanage.model.AmAuthoritiesModel;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 资源表
@@ -10,67 +12,65 @@ import java.util.Date;
  * @author 王成龙
  * @version 1.0 2016/4/27
  */
-@Entity
-@Table(name="mm_resources_t")
-public class MmResourcesEntity implements Serializable {
+public class MmResourcesModel implements Serializable {
 
     /** 序列化串号ID */
     private static final long serialVersionUID = 1L;
 
     /** 资源ID */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="resource_id")
     private long resourceId;
 
     /** 资源标识 */
-    @Column(name="resource_mark")
     private String resourceMark;
 
     /** 资源名称 */
-    @Column(name="resource_name")
     private String resourceName;
 
-    /** 资源类型编码ID */
-    @Column(name="resource_type")
+    /** 资源类型 */
     private String resourceType;
 
     /** 资源所属ID */
-    @Column(name="attribution_id")
     private long attributionId;
 
     /** 资源链接 */
-    @Column(name="resource_string")
     private String resourceString;
 
     /** 资源描述 */
-    @Column(name="resource_describe")
     private String resourceDescribe;
 
     /** 备注 */
-    @Column(name="remarks")
     private String remarks;
 
     /** 创建用户 */
-    @Column(name="create_user")
     private String createUser;
 
     /** 创建时间 */
-    @Column(name="create_time")
     private Date createTime;
 
     /** 更新用户 */
-    @Column(name="update_user")
     private String updateUser;
 
     /** 更新时间 */
-    @Column(name="update_time")
     private Date updateTime;
 
-    /** 版本号 */
-    @Version
-    @Column(name="version_no")
-    private Long versionNo;
+    /** 权限List */
+    private List<AmAuthoritiesModel> authorities;
+
+    /**
+     * 权限List的取得
+     * @return 权限List
+     */
+    public List<AmAuthoritiesModel> getAuthorities() {
+        return authorities;
+    }
+
+    /**
+     * 权限List的设定
+     * @param authorities 权限List
+     */
+    public void setAuthorities(List<AmAuthoritiesModel> authorities) {
+        this.authorities = authorities;
+    }
 
     /**
      * 资源ID的取得
@@ -121,16 +121,16 @@ public class MmResourcesEntity implements Serializable {
     }
 
     /**
-     * 资源类型编码ID的取得
-     * @return 资源类型编码ID
+     * 资源类型的取得
+     * @return 资源类型
      */
     public String getResourceType() {
         return this.resourceType;
     }
 
     /**
-     * 资源类型编码ID的设定
-     * @param resourceType 资源类型编码ID
+     * 资源类型的设定
+     * @param resourceType 资源类型
      */
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
@@ -265,22 +265,6 @@ public class MmResourcesEntity implements Serializable {
     }
 
     /**
-     * 版本号的取得
-     * @return 版本号
-     */
-    public Long getVersionNo() {
-        return versionNo;
-    }
-
-    /**
-     * 版本号的设定
-     * @param versionNo 版本号
-     */
-    public void setVersionNo(Long versionNo) {
-        this.versionNo = versionNo;
-    }
-
-    /**
      * 重写toString方法
      * @return 返回对象的内容
      */
@@ -306,7 +290,7 @@ public class MmResourcesEntity implements Serializable {
         sbBeanContent.append(resourceName);
         sbBeanContent.append(",");
 
-        // 资源类型编码ID
+        // 资源类型
         sbBeanContent.append("resourceType=");
         sbBeanContent.append(resourceType);
         sbBeanContent.append(",");
@@ -349,12 +333,9 @@ public class MmResourcesEntity implements Serializable {
         // 更新时间
         sbBeanContent.append("updateTime=");
         sbBeanContent.append(updateTime);
-        sbBeanContent.append(",");
-
-        // 版本号
-        sbBeanContent.append("versionNo=");
-        sbBeanContent.append(versionNo);
         sbBeanContent.append("]");
+
+        sbBeanContent.append(authorities.toString());
 
         return sbBeanContent.toString();
     }

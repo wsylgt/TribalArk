@@ -9,6 +9,7 @@ import com.cn.dao.repositorys.UmUserRepository;
 import com.cn.dao.repositorys.UmUserRoleRepository;
 import com.cn.sys.security.model.SecurityUser;
 import com.cn.sys.security.model.User;
+import com.cn.utils.ConvertUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
@@ -57,6 +58,7 @@ public class AuthenticationService implements UserDetailsService {
         // 读取用户
         UmUserEntity dbUser = userRepository.findByUserName(userName);
 
+
         // 用户是否可用
         boolean userEnabled = false;
         if(Constant.USER_STATUS_CODE_ID_NORMAL.equals(dbUser.getUserStatusCodeId())){
@@ -74,10 +76,40 @@ public class AuthenticationService implements UserDetailsService {
          */
         // 权限
         Set<GrantedAuthority> auths = loadUserAuthorities(dbUser.getUserId());
-        User sUser = new User(dbUser.getUserName(), dbUser.getPassword(), userEnabled, true, true, true, auths);
+        User user = new User(dbUser.getUserName(), dbUser.getPassword(), userEnabled, true, true, true, auths);
 
-        SecurityUser securityUser = new SecurityUser(sUser);
-        securityUser.setUser(sUser);
+        // 用户ID
+        user.setUserId(dbUser.getUserId());
+        // 邮箱
+        user.setEmail(dbUser.getEmail());
+        // 手机号
+        user.setCellphoneNo(dbUser.getCellphoneNo());
+        // 座机号
+        user.setTelephoneNo(dbUser.getTelephoneNo());
+        // QQ号
+        user.setQq(dbUser.getQq());
+        // 微信号
+        user.setWechat(user.getWechat());
+        // 工号
+        user.setEmployeeNo(user.getEmployeeNo());
+        // 所在部门
+        user.setDepartment(user.getDepartment());
+        // 用户描述
+        user.setUserDescription(user.getUserDescription());
+        // 性别编码组ID
+        user.setSexGroupId(user.getSexGroupId());
+        // 性别编码ID
+        user.setSexCodeId(user.getSexCodeId());
+        // 用户状态编码组ID
+        user.setUserStatusGroupId(dbUser.getUserStatusGroupId());
+        // 用户状态编码ID
+        user.setUserStatusCodeId(dbUser.getUserStatusCodeId());
+        // 备注
+        user.setRemarks(user.getRemarks());
+
+
+        SecurityUser securityUser = new SecurityUser(user);
+        securityUser.setUser(user);
 
         return securityUser;
     }

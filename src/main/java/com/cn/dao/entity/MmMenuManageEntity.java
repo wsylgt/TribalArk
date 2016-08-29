@@ -5,47 +5,39 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 资源表
- * <p>资源表<br>
+ * 菜单管理表
+ * <p>菜单管理表<br>
  * @author 王成龙
- * @version 1.0 2016/4/27
+ * @version 1.0 2016/4/25
  */
 @Entity
-@Table(name="mm_resources_t")
-public class MmResourcesEntity implements Serializable {
+@Table(name="mm_menu_manage_t")
+public class MmMenuManageEntity implements Serializable {
 
     /** 序列化串号ID */
     private static final long serialVersionUID = 1L;
 
-    /** 资源ID */
+    /** 菜单ID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="resource_id")
-    private long resourceId;
+    @Column(name="menu_id")
+    private long menuId;
 
-    /** 资源标识 */
-    @Column(name="resource_mark")
-    private String resourceMark;
+    /** 菜单标识 */
+    @Column(name="menu_mark")
+    private String menuMark;
 
-    /** 资源名称 */
-    @Column(name="resource_name")
-    private String resourceName;
+    /** 菜单名 */
+    @Column(name="menu_name")
+    private String menuName;
 
-    /** 资源类型编码ID */
-    @Column(name="resource_type")
-    private String resourceType;
+    /** 菜单描述 */
+    @Column(name="menu_describe")
+    private String menuDescribe;
 
-    /** 资源所属ID */
-    @Column(name="attribution_id")
-    private long attributionId;
-
-    /** 资源链接 */
-    @Column(name="resource_string")
-    private String resourceString;
-
-    /** 资源描述 */
-    @Column(name="resource_describe")
-    private String resourceDescribe;
+    /** 所属菜单组ID */
+    @Column(name="menu_group_id")
+    private long menuGroupId;
 
     /** 备注 */
     @Column(name="remarks")
@@ -73,115 +65,83 @@ public class MmResourcesEntity implements Serializable {
     private Long versionNo;
 
     /**
-     * 资源ID的取得
-     * @return 资源ID
+     * 菜单ID的取得
+     * @return 菜单ID
      */
-    public long getResourceId() {
-        return this.resourceId;
+    public long getMenuId() {
+        return this.menuId;
     }
 
     /**
-     * 资源ID的设定
-     * @param resourceId 资源ID
+     * 菜单ID的设定
+     * @param menuId 菜单ID
      */
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
+    public void setMenuId(long menuId) {
+        this.menuId = menuId;
     }
 
     /**
-     * 资源标识的取得
-     * @return 资源标识
+     * 菜单标识的取得
+     * @return 菜单标识
      */
-    public String getResourceMark() {
-        return this.resourceMark;
+    public String getMenuMark() {
+        return this.menuMark;
     }
 
     /**
-     * 资源标识的设定
-     * @param resourceMark 资源标识
+     * 菜单标识的设定
+     * @param menuMark 菜单标识
      */
-    public void setResourceMark(String resourceMark) {
-        this.resourceMark = resourceMark;
+    public void setMenuMark(String menuMark) {
+        this.menuMark = menuMark;
     }
 
     /**
-     * 资源名称的取得
-     * @return 资源名称
+     * 菜单名的取得
+     * @return 菜单名
      */
-    public String getResourceName() {
-        return this.resourceName;
+    public String getMenuName() {
+        return this.menuName;
     }
 
     /**
-     * 资源名称的设定
-     * @param resourceName 资源名称
+     * 菜单名的设定
+     * @param menuName 菜单名
      */
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     /**
-     * 资源类型编码ID的取得
-     * @return 资源类型编码ID
+     * 菜单描述的取得
+     * @return 菜单描述
      */
-    public String getResourceType() {
-        return this.resourceType;
+    public String getMenuDescribe() {
+        return this.menuDescribe;
     }
 
     /**
-     * 资源类型编码ID的设定
-     * @param resourceType 资源类型编码ID
+     * 菜单描述的设定
+     * @param menuDescribe 菜单描述
      */
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
+    public void setMenuDescribe(String menuDescribe) {
+        this.menuDescribe = menuDescribe;
     }
 
     /**
-     * 资源所属ID的取得
-     * @return 资源所属ID
+     * 所属菜单组ID的取得
+     * @return 所属菜单组ID
      */
-    public long getAttributionId() {
-        return this.attributionId;
+    public long getMenuGroupId() {
+        return this.menuGroupId;
     }
 
     /**
-     * 资源所属ID的设定
-     * @param attributionId 资源所属ID
+     * 所属菜单组ID的设定
+     * @param menuGroupId 所属菜单组ID
      */
-    public void setAttributionId(long attributionId) {
-        this.attributionId = attributionId;
-    }
-
-    /**
-     * 资源链接的取得
-     * @return 资源链接
-     */
-    public String getResourceString() {
-        return this.resourceString;
-    }
-
-    /**
-     * 资源链接的设定
-     * @param resourceString 资源链接
-     */
-    public void setResourceString(String resourceString) {
-        this.resourceString = resourceString;
-    }
-
-    /**
-     * 资源描述的取得
-     * @return 资源描述
-     */
-    public String getResourceDescribe() {
-        return this.resourceDescribe;
-    }
-
-    /**
-     * 资源描述的设定
-     * @param resourceDescribe 资源描述
-     */
-    public void setResourceDescribe(String resourceDescribe) {
-        this.resourceDescribe = resourceDescribe;
+    public void setMenuGroupId(long menuGroupId) {
+        this.menuGroupId = menuGroupId;
     }
 
     /**
@@ -291,39 +251,29 @@ public class MmResourcesEntity implements Serializable {
         StringBuilder sbBeanContent = new StringBuilder();
         sbBeanContent.append("[");
 
-        // 资源ID
-        sbBeanContent.append("resourceId=");
-        sbBeanContent.append(resourceId);
+        // 菜单ID
+        sbBeanContent.append("menuId=");
+        sbBeanContent.append(menuId);
         sbBeanContent.append(",");
 
-        // 资源标识
-        sbBeanContent.append("resourceMark=");
-        sbBeanContent.append(resourceMark);
+        // 菜单标识
+        sbBeanContent.append("menuMark=");
+        sbBeanContent.append(menuMark);
         sbBeanContent.append(",");
 
-        // 资源名称
-        sbBeanContent.append("resourceName=");
-        sbBeanContent.append(resourceName);
+        // 菜单名
+        sbBeanContent.append("menuName=");
+        sbBeanContent.append(menuName);
         sbBeanContent.append(",");
 
-        // 资源类型编码ID
-        sbBeanContent.append("resourceType=");
-        sbBeanContent.append(resourceType);
+        // 菜单描述
+        sbBeanContent.append("menuDescribe=");
+        sbBeanContent.append(menuDescribe);
         sbBeanContent.append(",");
 
-        // 资源所属ID
-        sbBeanContent.append("attributionId=");
-        sbBeanContent.append(attributionId);
-        sbBeanContent.append(",");
-
-        // 资源链接
-        sbBeanContent.append("resourceString=");
-        sbBeanContent.append(resourceString);
-        sbBeanContent.append(",");
-
-        // 资源描述
-        sbBeanContent.append("resourceDescribe=");
-        sbBeanContent.append(resourceDescribe);
+        // 所属菜单组ID
+        sbBeanContent.append("menuGroupId=");
+        sbBeanContent.append(menuGroupId);
         sbBeanContent.append(",");
 
         // 备注

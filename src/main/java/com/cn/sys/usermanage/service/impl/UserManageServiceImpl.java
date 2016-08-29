@@ -74,7 +74,7 @@ public class UserManageServiceImpl implements IUserManageService {
     @Override
     public Page<UserModel> allUser(int pageNumber, int pageSize, String employeeNo, String userName, Long roleId, String isDelete) {
 
-        logger.debug("allUser: 获取所有用户信息列表" + contextManage.getUserInfo().getUsername());
+        logger.debug("allUser: 获取所有用户信息列表" + contextManage.getUser().getUsername());
 
         // 返回页面的userModelList
         List<UserModel> userModelList = new ArrayList<UserModel>();
@@ -169,7 +169,7 @@ public class UserManageServiceImpl implements IUserManageService {
     @Override
     @Transactional
     public String saveUser(UserModel userModel) {
-        //logger.debug("saveUser: 添加一个用户" + contextManage.getUserInfo().getUsername());
+        //logger.debug("saveUser: 添加一个用户" + contextManage.getUser().getUsername());
 
         // 返回的状态
         String status = Constant.STATUS_DB_ERROR;
@@ -189,35 +189,35 @@ public class UserManageServiceImpl implements IUserManageService {
 
             Date systeDate = systemDateManage.getSystemTime();
             // 设定操作人, 操作时间等
-            umUserEntity.setCreateUser(contextManage.getUserInfo().getUsername());
+            umUserEntity.setCreateUser(contextManage.getUser().getUsername());
             umUserEntity.setCreateTime(systeDate);
-            umUserEntity.setUpdateUser(contextManage.getUserInfo().getUsername());
+            umUserEntity.setUpdateUser(contextManage.getUser().getUsername());
             umUserEntity.setUpdateTime(systeDate);
 
             // 设定用户角色
             UmUserRoleEntity umUserRoleEntity = new UmUserRoleEntity();
             umUserRoleEntity.setRoleId(userModel.getRoleId());
             // 设定操作人, 操作时间等
-            umUserRoleEntity.setCreateUser(contextManage.getUserInfo().getUsername());
+            umUserRoleEntity.setCreateUser(contextManage.getUser().getUsername());
             umUserRoleEntity.setCreateTime(systeDate);
-            umUserRoleEntity.setUpdateUser(contextManage.getUserInfo().getUsername());
+            umUserRoleEntity.setUpdateUser(contextManage.getUser().getUsername());
             umUserRoleEntity.setUpdateTime(systeDate);
 
             // 保存到数据库
             UmUserEntity userEntity = umUserRepository.save(umUserEntity);
 
-            // 如果userEntity不是null
-            if (userEntity != null) {
-                umUserRoleEntity.setUserId(userEntity.getUserId());
-                UmUserRoleEntity roleEntity = umUserRoleRepository.save(umUserRoleEntity);
-
-                // 如果roleEntity不是null, 就返回成功
-                if (roleEntity != null) {
-                    status = Constant.STATUS_OK;
-                }
-            }else{
-                return status;
-            }
+//            // 如果userEntity不是null
+//            if (userEntity != null) {
+//                umUserRoleEntity.setUserId(userEntity.getUserId());
+//                UmUserRoleEntity roleEntity = umUserRoleRepository.save(umUserRoleEntity);
+//
+//                // 如果roleEntity不是null, 就返回成功
+//                if (roleEntity != null) {
+//                    status = Constant.STATUS_OK;
+//                }
+//            }else{
+//                return status;
+//            }
         }
         return status;
     }
@@ -229,7 +229,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String editUser(UserEditModel model) {
-        logger.debug("editUser: 编辑用户信息" + contextManage.getUserInfo().getUsername());
+        logger.debug("editUser: 编辑用户信息" + contextManage.getUser().getUsername());
 
         // 返回的状态
         String status = Constant.STATUS_DB_ERROR;
@@ -289,7 +289,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public UserModel findByUserId(Long userId) {
-        logger.debug("findByUserId: 根据用户ID查询用的详细信息" + contextManage.getUserInfo().getUsername());
+        logger.debug("findByUserId: 根据用户ID查询用的详细信息" + contextManage.getUser().getUsername());
 
         UserModel userModel = new UserModel();
 
@@ -331,7 +331,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String freezeAccount(Long userId) {
-        logger.debug("fnFreezeAccount: 冻结用户账户" + contextManage.getUserInfo().getUsername());
+        logger.debug("fnFreezeAccount: 冻结用户账户" + contextManage.getUser().getUsername());
 
         //返回页面的状态信息,默认返回失败
         String status = Constant.STATUS_DB_ERROR;
@@ -362,7 +362,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String recoveryAccount(Long userId) {
-        logger.debug("fnRecoveryAccount: 恢复用户账户" + contextManage.getUserInfo().getUsername());
+        logger.debug("fnRecoveryAccount: 恢复用户账户" + contextManage.getUser().getUsername());
 
         //返回页面的状态信息,默认返回失败
         String status = Constant.STATUS_DB_ERROR;
@@ -393,7 +393,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String deleteUser(Long userId) {
-        logger.debug("deleteUser: 根据用户ID删除一个用户" + contextManage.getUserInfo().getUsername());
+        logger.debug("deleteUser: 根据用户ID删除一个用户" + contextManage.getUser().getUsername());
 
         //返回页面的状态信息,默认返回失败
         String status = Constant.STATUS_DB_ERROR;
@@ -423,7 +423,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String recoveryUser(Long userId) {
-        logger.debug("recoveryUser: 根据用户ID恢复删除的用户" + contextManage.getUserInfo().getUsername());
+        logger.debug("recoveryUser: 根据用户ID恢复删除的用户" + contextManage.getUser().getUsername());
 
         //返回页面的状态信息,默认返回失败
         String status = Constant.STATUS_DB_ERROR;
@@ -455,7 +455,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String resetPassword(ResetPasswordModel model) {
-        logger.debug("resetPassword: 重置后台用户密码"+ contextManage.getUserInfo().getUsername());
+        logger.debug("resetPassword: 重置后台用户密码"+ contextManage.getUser().getUsername());
 
         //返回页面的状态信息,默认返回失败
         String status = Constant.STATUS_DB_ERROR;
@@ -492,7 +492,7 @@ public class UserManageServiceImpl implements IUserManageService {
      */
     @Override
     public String isExist(String userName, String employeeNo, String cellphoneNo) {
-        logger.debug("isExist: 查询用户名、工号，是否已经存在"+ contextManage.getUserInfo().getUsername());
+        logger.debug("isExist: 查询用户名、工号，是否已经存在"+ contextManage.getUser().getUsername());
 
         // 默认返回的状态, 不存在
         String exist = Constant.DB_NOT_EXISTS;
